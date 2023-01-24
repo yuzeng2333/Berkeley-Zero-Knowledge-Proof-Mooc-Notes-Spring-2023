@@ -1,2 +1,3 @@
-# Berkeley-Zero-Knowledge-Proof-Mooc-Notes-Spring-2023
-Help people understand the ZKP mooc course of Berkeley
+# Introduction
+This repository contains the notes, comments & supplementary materials made by me ([Yu Zeng](yuzeng2333.github.io/), yuzeng@princeton.edu), to record my understanding of the Mooc [Zero Knowledge Proof Course](https://zk-learning.org/). Hope it can help others too!
+Also, everyone is welcomed to help improve the notes here! Feel free to add pull request.
