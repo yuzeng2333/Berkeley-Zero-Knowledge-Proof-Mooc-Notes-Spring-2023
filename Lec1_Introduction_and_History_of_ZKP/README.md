@@ -1,8 +1,5 @@
 # Notes for Lecture 1
 (the notes are below each slide)
-![slide4](./slides/Lecture1-04.jpg)
-## Notes
-Before introducing the interactive proof, NP-proof is introduced first. The prover "works hard" to find a short proof, e.g., find the two prime factors of a large number. Then the verifier can check the result easily by justing multiplying the factors. Note that finding the proof may not be solvable in polynomial time, but the verifier can verify in polynomial time. This is why the proof is called "NP"(Non-deterministic polynomial): the proof can be verified in polynomial, but to find the proof takes longer than polynomial time. There are lots of information online about P, NP, NP-completeness, etc.
 
 ![slide18](./slides/Lecture1-18.jpg)
 ## 1 "Send $s=r^2\; mod\; n$ and say" (actually here it should be N, not n)
@@ -43,38 +40,19 @@ and he know nothing about $r$. Actually $r$ can be many different numbers. There
 
 
 ![slide55](./slides/Lecture1-55.jpg)
+## Commit and Decommit
+Commit is like encrytion (e.g., can be implemented with a [hash function](https://crypto.stackexchange.com/questions/6790/commitment-scheme-using-hash-functions)). So it should be "hiding": if a value is committed, people cannot guess the original value from the commited value. 
+But Decommit is not decryption. Instead, it is the process of checking if the committed value from sender is truly the committed value of the original value. The bottom of Slide 56 gives an example. 
 
-
-
-![slide56](./slides/Lecture1-56.jpg)
-![slide57](./slides/Lecture1-57.jpg)
-![slide58](./slides/Lecture1-58.jpg)
 ![slide59](./slides/Lecture1-59.jpg)
-![slide60](./slides/Lecture1-60.jpg)
-![slide61](./slides/Lecture1-61.jpg)
-![slide62](./slides/Lecture1-62.jpg)
-![slide63](./slides/Lecture1-63.jpg)
-![slide64](./slides/Lecture1-64.jpg)
-![slide65](./slides/Lecture1-65.jpg)
-![slide66](./slides/Lecture1-66.jpg)
-![slide67](./slides/Lecture1-67.jpg)
-![slide68](./slides/Lecture1-68.jpg)
-![slide69](./slides/Lecture1-69.jpg)
-![slide70](./slides/Lecture1-70.jpg)
-![slide71](./slides/Lecture1-71.jpg)
-![slide72](./slides/Lecture1-72.jpg)
-![slide73](./slides/Lecture1-73.jpg)
-![slide74](./slides/Lecture1-74.jpg)
-![slide75](./slides/Lecture1-75.jpg)
-![slide76](./slides/Lecture1-76.jpg)
-![slide77](./slides/Lecture1-77.jpg)
-![slide78](./slides/Lecture1-78.jpg)
-![slide79](./slides/Lecture1-79.jpg)
-![slide80](./slides/Lecture1-80.jpg)
-![slide81](./slides/Lecture1-81.jpg)
-![slide82](./slides/Lecture1-82.jpg)
-![slide83](./slides/Lecture1-83.jpg)
-![slide84](./slides/Lecture1-84.jpg)
-![slide85](./slides/Lecture1-85.jpg)
+## Soundness
+If the prover is dishonest, why the accept probability is smaller than $(1-1/|E|)^k$?
+The reason is, if the prover does not know how to 3-color the graph, then in the coloring of the prover, there is at least one edge whose two vertex have the same color.
+The verifier randomly selects one edge. The probability that the edge chosen has two same color $>\; 1/|E|$ ($|E| means the number of edges$). 
+So the probability that verfier selects an edge with two different colors $(<\; 1-1/|E|)$. 
+After $k$ experiments, the probability $<\; (1-1/|E|)^k$. 
 
+## Why we need commit scheme Here
+If no commit scheme, the prover can easily cheat: everytime the verifier picks an edge, he just randomly return two colors. However, with the commit scheme, the colors of the graph are fixed after commit (and before verifier selects the edge), and cannot be changed by prover. So the prover cannot cheat.
 
+# TO be finish
