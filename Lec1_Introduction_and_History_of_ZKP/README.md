@@ -17,7 +17,7 @@ for( i = 0; i < m; i++):
 
 ## Why this proof is complete and sound
 ### Completeness
-If $b=1$: send $z=r$. The verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For the Left-hand-side(LHS), because $z=r\ mod\ N$, $z^2 = r^2\ mod\ N$([basic property])(https://en.wikipedia.org/wiki/Modular_arithmetic). For the Right-hand-side(RHS), $sy^{1-b}=s*y^{1-0} = s$. $s = r^2\ mod\ N$ is of course true because that is how $s$ is chosen by the prover. Therefore, $z^2 = r^2\ mod\ N$. Accepts the proof.
+If $b=1$: send $z=r$. The verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For the Left-hand-side(LHS), because $z=r\ mod\ N$, $z^2 = r^2\ mod\ N$([basic property])(https://en.wikipedia.org/wiki/Modular_arithmetic). For the Right-hand-side(RHS), $sy^{1-b}=s*y^{1-1}=s$. Here $s = r^2\ mod\ N$ is of course true because that is how $s$ is chosen by the prover. Therefore, $z^2 = r^2\ mod\ N$. Accepts the proof.
 If $b=1$: send $z=r\sqrt{y}$. Again the verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For LHS: $z^2 = r^2*y\ mod\ N$. For the Right-hand-side(RHS), $sy^(1-b)=s*y^(1-0) = s*y$. Since $s = r^2 mod N$, according to the [basic property](https://en.wikipedia.org/wiki/Modular_arithmetic) of modular arithmetic, $s*y = r^2*y\ mod\ N$.
 Therefore, the Verifier should accept the proof.
 
