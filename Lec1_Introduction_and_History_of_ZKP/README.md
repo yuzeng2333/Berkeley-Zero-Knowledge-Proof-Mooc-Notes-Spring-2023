@@ -8,17 +8,21 @@ Therefore, the verifier just gets $s$. He knows $s$ is quadratic residue modulo 
 
 ## 2 Steps of this IP protocol
 The presentation of this protocol in this slide is not very clear (maybe because it is presented with plain text). Here I show a pseudo code version, based on the original ZKP paper[GMP](https://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Proof%20Systems/The_Knowledge_Complexity_Of_Interactive_Proof_Systems.pdf)(page 13):
+```
 for( i = 0; i < m; i++):
     1. Prover sends a random $s$ to Verifier, and $s$ is quadratic residue modulo $N$. (Note that $s$ is different in each loop iteration)
     2. Verifier remembers $s$, tosses a coin, sends $b$ to Prover: if coin is head up, $b = 1$, otherwise, $b=0$.
     3. Prover sends $z$ to verifier. If $b=1$: send $z=r\ mod\ N$. Note that $mod N$ is missing in the slide. If $b=1$: send $z=r\sqrt{y}\ mod\ N$.
     4. verifier checks if $z^2 = sy^{1-b}\ mod\ N$.
+```
 
 
 ## Why this proof is complete and sound
 ### Completeness
-If $b=1$: send $z=r$. The verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For the Left-hand-side(LHS), because $z=r\ mod\ N$, $z^2 = r^2\ mod\ N$([basic property])(https://en.wikipedia.org/wiki/Modular_arithmetic). For the Right-hand-side(RHS), $sy^{1-b}=s*y^{1-1}=s$. Here $s = r^2\ mod\ N$ is of course true because that is how $s$ is chosen by the prover. Therefore, $z^2 = r^2\ mod\ N$. Accepts the proof.
+If $b=1$: send $z=r$. The verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For the Left-hand-side(LHS), because $z=r\ mod\ N$, $z^2 = r^2\ mod\ N$([basic property])(https://en.wikipedia.org/wiki/Modular_arithmetic). For the Right-hand-side(RHS), $$sy^{1-b}=s*y^{1-1}=s$$. Here $s = r^2\ mod\ N$ is of course true because that is how $s$ is chosen by the prover. Therefore, $z^2 = r^2\ mod\ N$. Accepts the proof.
+
 If $b=1$: send $z=r\sqrt{y}$. Again the verifier checks if $z^2 = sy^{1-b}\ mod\ N$. For LHS: $z^2 = r^2*y\ mod\ N$. For the Right-hand-side(RHS), $sy^(1-b)=s*y^(1-0) = s*y$. Since $s = r^2 mod N$, according to the [basic property](https://en.wikipedia.org/wiki/Modular_arithmetic) of modular arithmetic, $s*y = r^2*y\ mod\ N$.
+
 Therefore, the Verifier should accept the proof.
 
 ### Soundness
