@@ -1,11 +1,6 @@
 # Notes for Lecture 2
 This lecture is only an introduction, so most part are easy to understand or no need to dive into. Things get unclear only in the second half.
 
-![slide40](./slides/Lecture2-40.jpg)
-## What are commitments
-Commitment is a non-trivial technique. Prof. Dan Boneh did not discuss the details here. But I feel revealing some technical details can help people understand the course contents here. [blog](https://medium.com/taipei-ethereum-meetup/commitment-primer-2194496f2185)).
-
-
 
 ![slide42](./slides/Lecture2-42.jpg)
 ## Explanations for this proof process
@@ -20,6 +15,7 @@ But another question is: how can verifier know the replied y from the prover is 
 How does it work? Here I give some slight technical details to help understanding:
 within the finite field R in the slide, the function {f: X -> Y} is essentially a group of mappings: for each x in R, maps it to some y. How can we use hash function to commit this mapping? One easy way is, for each mapping pair (x<sub>i</sub>, y<sub>i</sub>), do a hashing h<sub>i</sub> = hash(x<sub>i</sub>, y<sub>i</sub>). So if there are N pairs, we can use N hashed values as the commitment of the function. The prover can send "i" as the proof $\pi$, which tells which hashed value (h<sub>i</sub>) to use. Then the verifier can check if h<sub>i</sub> = hash(x, y) to know if prover gives the correct answer (x is the random value he sent to prover, y is the reply from prover).
 
-But the approve commitment approach is not good enough: we still need N hashed values, which is too many. The actually commitment reduce the size by hierarchical hashing: h<sub>1</sub> and h<sub>2</sub> is used to generate a new hash h<sub>12</sub> = hash(h<sub>1</sub>, h<sub>2</sub>), h<sub>3</sub> and h<sub>4</sub> is used to generate h<sub>34</sub>, etc. Then you reduced the total size to half. You can repeat this process again until finally we have only one hash value (com<sub>f</sub>) as the commitment of the function f. This is called [Merkel tree](https://en.wikipedia.org/wiki/Merkle_tree). Then to check the correctness of the (x, y), the verifier needs some intermediate hash values to check if the final hash value is equal to com<sub>f</sub>. Those intermediate hashed value are the proof $\pi$.
+But the approve commitment approach is not good enough: we still need N hashed values, which is too many. The actually commitment reduce the size by hierarchical hashing: h<sub>1</sub> and h<sub>2</sub> is used to generate a new hash h<sub>12</sub> = hash(h<sub>1</sub>, h<sub>2</sub>), h<sub>3</sub> and h<sub>4</sub> is used to generate h<sub>34</sub>, etc. Then you reduced the total size to half. You can repeat this process again until finally we have only one hash value (com<sub>f</sub>) as the commitment of the function f. This is called [Merkel tree](https://en.wikipedia.org/wiki/Merkle_tree). Then to check the correctness of the (x, y), the verifier needs some intermediate hash values to check if the final hash value is equal to com<sub>f</sub>. Those intermediate hashed value are the proof $\pi$. [This post](https://www.simplilearn.com/tutorials/blockchain-tutorial/merkle-tree-in-blockchain) is also helpful for understanding how the Merkel tree works for the commitment.
 
-
+![slide57](./slides/Lecture2-57.jpg)
+This slide confuses me. I haven't made everything clear. As I have multiple interviews next week, I'll leave it later. :stuck_out_tongue_closed_eyes:
